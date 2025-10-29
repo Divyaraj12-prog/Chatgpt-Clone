@@ -9,7 +9,10 @@ const MsgModel = require('../models/message.model');
 function initSocketServer(httpserver) {
   const io = new Server(httpserver, {
     cors: {
-      origin: "http://localhost:5173",
+      origin: [
+        "http://localhost:5173",
+        "https://chatgpt-clone-phi-one.vercel.app"
+      ],
       credentials: true,
       methods: ["GET", "POST"],
       allowedHeaders: ["Content-Type", "Authorization", "Cookie"]
