@@ -10,7 +10,8 @@ const corsOptions = {
   origin: [
     'http://localhost:5173',
     'https://chatgpt-clone-phi-one.vercel.app',
-    'https://chatgpt-clone-q2kvbued7-purohitdivyaraj000-2228s-projects.vercel.app'
+    'https://chatgpt-clone-q2kvbued7-purohitdivyaraj000-2228s-projects.vercel.app',
+    'https://chatgpt-clone-1ttt2qhfs-purohitdivyaraj000-2228s-projects.vercel.app'
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
