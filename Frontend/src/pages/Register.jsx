@@ -9,7 +9,7 @@ const Register = () => {
 
     useEffect(() => {
       let mounted = true;
-      axios.get('http://localhost:3000/api/auth/me', { withCredentials: true })
+      axios.get('https://chatgpt-clone-o0m6.onrender.com/api/auth/me', { withCredentials: true })
         .then(() => { if (mounted) navigate('/', { replace: true }); })
         .catch(() => {});
       return () => { mounted = false; };
@@ -26,7 +26,7 @@ const Register = () => {
         setSubmitting(true);
         console.log(form);
 
-        axios.post("http://localhost:3000/api/auth/register", {
+        axios.post("https://chatgpt-clone-o0m6.onrender.com/api/auth/register", {
             email: form.email,
             fullname: {
                 firstname: form.firstname,
