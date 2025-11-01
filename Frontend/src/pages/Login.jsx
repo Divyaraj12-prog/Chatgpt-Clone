@@ -25,7 +25,7 @@ const Login = () => {
         setSubmitting(true);
 
 
-        console.log(form);
+        // console.log(form);
 
         axios.post("https://chatgpt-clone-o0m6.onrender.com/api/auth/login", {
             email: form.email,
@@ -35,7 +35,7 @@ const Login = () => {
                 withCredentials: true
             }
         ).then((res) => {
-            console.log(res);
+            // console.log(res);
             navigate("/");
         }).catch((err) => {
             console.error(err);

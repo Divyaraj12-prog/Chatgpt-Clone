@@ -24,7 +24,7 @@ const Register = () => {
     async function handleSubmit(e) {
         e.preventDefault();
         setSubmitting(true);
-        console.log(form);
+        // console.log(form);
 
         axios.post("https://chatgpt-clone-o0m6.onrender.com/api/auth/register", {
             email: form.email,
@@ -36,7 +36,7 @@ const Register = () => {
         }, {
             withCredentials: true
         }).then((res) => {
-            console.log(res);
+            // console.log(res);
             navigate("/");
         }).catch((err) => {
             console.error(err);

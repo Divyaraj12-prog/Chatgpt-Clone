@@ -93,7 +93,7 @@ const Home = () => {
 
         // listen for server event name (server emits 'ai-res')
         tempSocket.on('ai-res', (messagePayload) => {
-          console.log("Received AI response:", messagePayload);
+          // console.log("Received AI response:", messagePayload);
 
           setMessages((prevMessages) => [ ...prevMessages, {
             type: 'ai',
@@ -121,7 +121,7 @@ const Home = () => {
   const sendMessage = async () => {
 
     const trimmed = input.trim();
-    console.log("Sending message:", trimmed);
+    // console.log("Sending message:", trimmed);
     if (!trimmed || !activeChatId || isSending) return;
     dispatch(sendingStarted());
 
@@ -130,7 +130,7 @@ const Home = () => {
       content: trimmed
     } ];
 
-    console.log("New messages:", newMessages);
+    // console.log("New messages:", newMessages);
 
     setMessages(newMessages);
     dispatch(setInput(''));
@@ -165,7 +165,7 @@ const Home = () => {
 
    const response = await  axios.get(`https://chatgpt-clone-o0m6.onrender.com/api/chat/messages/${chatId}`, { withCredentials: true })
 
-   console.log("Fetched messages:", response.data.messages);
+  //  console.log("Fetched messages:", response.data.messages);
 
    setMessages(response.data.messages.map(m => ({
      type: m.role === 'user' ? 'user' : 'ai',
