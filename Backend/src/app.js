@@ -8,8 +8,8 @@ const chatRoutes = require('./routes/chat.routes');
 
 const corsOptions = {
   origin: [
-    'https://chatgpt-clone-phi-one.vercel.app',
-    'https://chatgpt-clone-1ttt2qhfs-purohitdivyaraj000-2228s-projects.vercel.app'
+    process.env.FRONTEND_URL,
+    process.env.FRONTEND_URL_2
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
