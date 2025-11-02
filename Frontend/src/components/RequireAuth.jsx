@@ -8,9 +8,10 @@ const RequireAuth = ({ children }) => {
 
   useEffect(() => {
     let mounted = true;
-    axios.get('/api/auth/me', { withCredentials: true })
+    axios.get('https://chatgpt-clone-o0m6.onrender.com/api/auth/me', { withCredentials: true })
       .then(() => { if (mounted) setStatus('ok'); })
       .catch(() => { if (mounted) setStatus('unauth'); });
+
     return () => { mounted = false; };
   }, []);
 
