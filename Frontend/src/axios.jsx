@@ -1,7 +1,9 @@
 import axios from "axios";
 
+const BASE = import.meta.env.VITE_API_URL || "https://chatgpt-clone-o0m6.onrender.com";
+
 const instance = axios.create({
-  baseURL: "https://chatgpt-clone-o0m6.onrender.com", // You can set a default base URL if needed
+  baseURL: BASE,
   withCredentials: true,
   headers: {
     "Content-Type": "application/json"

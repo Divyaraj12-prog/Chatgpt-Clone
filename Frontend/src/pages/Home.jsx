@@ -33,6 +33,7 @@ const Home = () => {
   const activeChat = chats.find(c => c._id === activeChatId) || chats.find(c => c.id === activeChatId) || null;
   const isObjectId = (id) => /^[0-9a-fA-F]{24}$/.test(id || '');
   const [ messages, setMessages ] = useState([]);
+  const API_URL = import.meta.env.VITE_API_URL || '';
 
   const handleNewChat = async () => {
     // Prompt user for title of new chat, fallback to 'New Chat'
@@ -40,7 +41,7 @@ const Home = () => {
     if (title) title = title.trim();
     if (!title) return
 
-    const response = await axios.post("https://chatgpt-clone-o0m6.onrender.com/api/chat", {
+    const response = await axios.post('/api/chat', {
       title
     }, {
       withCredentials: true
@@ -55,7 +56,7 @@ const Home = () => {
     let mounted = true;
 
     // Fetch chats; if it fails (unauthenticated) ensure a local initial chat
-    axios.get("https://chatgpt-clone-o0m6.onrender.com/api/chat", { withCredentials: true })
+    axios.get('/api/chat', { withCredentials: true })
       .then(response => {
         if (!mounted) return;
         const fetched = response.data.chats.reverse();
@@ -76,9 +77,9 @@ const Home = () => {
     // Only connect socket if user session exists
     const initSocketIfAuthenticated = async () => {
       try {
-        await axios.get('https://chatgpt-clone-o0m6.onrender.com/api/auth/me', { withCredentials: true });
+        await axios.get('/api/auth/me', { withCredentials: true });
         if (!mounted) return;
-        const tempSocket = io("https://chatgpt-clone-o0m6.onrender.com", {
+        const tempSocket = io(API_URL, {
           withCredentials: true,
           transports: ['websocket', 'polling']
         });
@@ -139,7 +140,7 @@ const Home = () => {
     let chatIdToUse = activeChatId;
     if (!isObjectId(activeChatId)) {
       try {
-        const createRes = await axios.post("https://chatgpt-clone-o0m6.onrender.com/api/chat", {
+        const createRes = await axios.post('/api/chat', {
           title: activeChat?.title || 'New Chat'
         }, { withCredentials: true });
 
@@ -161,9 +162,14 @@ const Home = () => {
     });
   }
 
+  const createChatOnServer = async (title) => {
+    const createRes = await axios.post('/api/chat', { title }, { withCredentials: true });
+    return createRes.data.chat;
+  }
+
   const getMessages = async (chatId) => {
 
-   const response = await  axios.get(`https://chatgpt-clone-o0m6.onrender.com/api/chat/messages/${chatId}`, { withCredentials: true })
+   const response = await axios.get(`/api/chat/messages/${chatId}`, { withCredentials: true })
 
   //  console.log("Fetched messages:", response.data.messages);
 
