@@ -84,9 +84,9 @@ async function loginController(req, res) {
     })
 }
 
-// new: meController to check current session
+
 async function meController(req, res) {
-    // expects your auth middleware to populate req.user
+   
     if (!req.user) {
         return res.status(401).json({ message: 'Unauthorized' });
     }
